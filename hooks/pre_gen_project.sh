@@ -1,18 +1,23 @@
 #!/bin/bash
 
-npm install -g babel
-npm install -g babel-cli
+npm install yarn
+yarn init
+yarn add webpack webpack-dev-server path
 
-npm init
-npm install webpack --save
-npm install webpack-dev-server --save
+yarn add babel-loader babel-core babel-preset-es2015 babel-preset-react --dev
 
-npm install react --save
-npm install react-dom --save
+yarn add html-webpack-plugin
 
-npm install babel-core --save
-npm install babel-core
-npm install babel-loader
-npm install babel-preset-react
-npm install babel-preset-es2015
+yarn add react react-dom
 
+npm install -g json
+
+json -I -f package.json -e 'this.scripts={"start": "webpack-dev-server --hot"}'
+
+cat package.json
+
+echo
+echo "To run execute:"
+echo "==============="
+echo "yarn start"
+echo

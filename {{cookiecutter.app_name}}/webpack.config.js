@@ -1,29 +1,23 @@
-var config = {
-   entry: './main.js',
-	
-   output: {
-      path:'./',
-      filename: 'index.js',
-   },
-	
-   devServer: {
-      inline: true,
-      port: 8080
-   },
-	
-   module: {
-      loaders: [
-         {
-            test: /\.jsx?$/,
-            exclude: /node_modules/,
-            loader: 'babel',
-				
-            query: {
-               presets: ['es2015', 'react']
-            }
-         }
-      ]
-   }
-}
+const path = require('path');
 
-module.exports = config;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: './client/index.html',
+  filename: 'index.html',
+  inject: 'body'
+})
+
+module.exports = {
+  entry: './client/index.js',
+  output: {
+    path: path.resolve('dist'),
+    filename: 'index_bundle.js'
+  },
+  module: {
+    loaders: [
+      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+    ]
+  },
+  plugins: [HtmlWebpackPluginConfig]
+}
